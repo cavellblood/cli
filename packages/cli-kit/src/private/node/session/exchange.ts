@@ -6,6 +6,7 @@ import {identityFqdn} from '../../../public/node/context/fqdn.js'
 import {shopifyFetch} from '../../../public/node/http.js'
 import {err, ok, Result} from '../../../public/node/result.js'
 import {AbortError, ExtendableError} from '../../../public/node/error.js'
+import {outputContent, outputDebug} from '@shopify/cli-kit/node/output'
 
 export class InvalidGrantError extends ExtendableError {}
 export class InvalidRequestError extends ExtendableError {}
@@ -90,6 +91,15 @@ export async function refreshAccessToken(currentToken: IdentityToken): Promise<I
 export async function exchangeCustomPartnerToken(token: string): Promise<ApplicationToken> {
   const appId = applicationId('partners')
   const newToken = await requestAppToken('partners', token, ['https://api.shopify.com/auth/partners.app.cli.access'])
+  return newToken[appId]!
+}
+
+export async function exchangeForDevDashToken(token: string): Promise<ApplicationToken> {
+  outputDebug(outputContent`EXCHANGING TOKEN: ${token}`)
+  const appId = applicationId('developer-dashboard')
+  const newToken = await requestAppToken('developer-dashboard', token, [
+    'https://api.shopify.com/auth/organization.apps',
+  ])
   return newToken[appId]!
 }
 
