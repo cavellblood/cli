@@ -267,6 +267,7 @@ export async function testPaymentExtensions(directory = './my-extension'): Promi
   return extension
 }
 
+// probably need to refactor after we remove subscriptions field from webhooks spec
 export function testWebhookExtensions(params?: {
   emptyConfig?: boolean
   complianceTopics: false
@@ -282,6 +283,7 @@ export async function testWebhookExtensions({emptyConfig = false, complianceTopi
     ? ({} as unknown as BaseConfigType)
     : ({
         webhooks: {
+          api_version: '2024-01',
           subscriptions: [
             {
               topics: ['orders/delete'],
@@ -325,6 +327,38 @@ export async function testWebhookExtensions({emptyConfig = false, complianceTopi
   })
 
   return complianceTopics ? [webhooksExtension, privacyExtension] : webhooksExtension
+}
+
+export async function testWebhookSubscriptionExtensions({emptyConfig = false} = {}): Promise<ExtensionInstance> {
+  const configuration = emptyConfig
+    ? ({} as unknown as BaseConfigType)
+    : ({
+        webhooks: {
+          api_version: '2024-01',
+          subscriptions: [
+            {
+              topics: ['orders/delete', 'orders/create', 'orders/update'],
+              uri: 'https://my-app.com/webhooks',
+            },
+            {
+              topics: ['products/update'],
+              uri: 'https://my-app.com/webhooks/products',
+            },
+          ],
+        },
+      } as unknown as BaseConfigType)
+
+  const allSpecs = await loadLocalExtensionsSpecifications()
+  const webhookSubscriptionSpecification = allSpecs.find((spec) => spec.identifier === 'webhook_subscription')!
+
+  const webhooksExtension = new ExtensionInstance({
+    configuration,
+    configurationPath: '',
+    directory: './',
+    specification: webhookSubscriptionSpecification,
+  })
+
+  return webhooksExtension
 }
 
 export async function testWebPixelExtension(directory = './my-extension'): Promise<ExtensionInstance> {
