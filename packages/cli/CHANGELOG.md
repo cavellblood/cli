@@ -1,5 +1,17 @@
 # @shopify/cli
 
+## 3.59.2
+
+### Patch Changes
+
+- d82d4a46b: Add clean & build steps to stable shipit config
+- Updated dependencies [a5c2d79f4]
+  - @shopify/theme@3.59.2
+  - @shopify/app@3.59.2
+  - @shopify/cli-kit@3.59.2
+  - @shopify/plugin-cloudflare@3.59.2
+  - @shopify/plugin-did-you-mean@3.59.2
+
 ## 3.59.1
 
 ### Patch Changes

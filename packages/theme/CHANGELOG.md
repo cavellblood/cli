@@ -1,5 +1,12 @@
 # @shopify/theme
 
+## 3.59.2
+
+### Patch Changes
+
+- a5c2d79f4: - Fix the `shopify theme dev` proxy to use the development theme, even when users have a browser session with the live theme loaded
+  - @shopify/cli-kit@3.59.2
+
 ## 3.59.1
 
 ### Patch Changes
