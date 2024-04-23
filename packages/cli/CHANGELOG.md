@@ -1,5 +1,22 @@
 # @shopify/cli
 
+## 3.60.0
+
+### Minor Changes
+
+- fb085c32c: Adds localization support for editor extension collection
+- 427d9dc0f: Webhook trigger now reads from the configuration instead of .env and accepts more flags
+
+### Patch Changes
+
+- Updated dependencies [5bca2e386]
+- Updated dependencies [427d9dc0f]
+  - @shopify/app@3.60.0
+  - @shopify/cli-kit@3.60.0
+  - @shopify/theme@3.60.0
+  - @shopify/plugin-cloudflare@3.60.0
+  - @shopify/plugin-did-you-mean@3.60.0
+
 ## 3.59.0
 
 ### Minor Changes

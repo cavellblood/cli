@@ -1,5 +1,18 @@
 # @shopify/app
 
+## 3.60.0
+
+### Minor Changes
+
+- 427d9dc0f: Webhook trigger now reads from the configuration instead of .env and accepts more flags
+
+### Patch Changes
+
+- 5bca2e386: Update express to 4.19.2
+  - @shopify/create-app@3.60.0
+  - @shopify/cli-kit@3.60.0
+  - @shopify/plugin-cloudflare@3.60.0
+
 ## 3.59.0
 
 ### Minor Changes
